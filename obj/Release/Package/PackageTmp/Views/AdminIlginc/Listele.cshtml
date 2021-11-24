@@ -1,0 +1,52 @@
+﻿@model List<ChessProject.Models.Entitiy.Tbl_InterestingInfo>
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-left:520px"><h1><u>İLGİNÇ BİLGİLER SAYFASI</u></h1></div>
+<br />
+<br />
+<table class="table table-hover" id="tbl1" border="1">
+    <thead>
+        <tr>
+            <th>İLGİNÇ BİLGİ</th>
+            <th>GÜZEL BİR SÖZ</th>
+            <th>YAZAR</th>
+            <th>GÜNCELLE</th>
+            <th>SİL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Interesting</td>
+                <td>
+                    @item.Information
+                </td>
+                <td>
+                    @item.Who
+                </td>
+                <td>@Html.ActionLink("GÜNCELLE", "UpdatePage", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("SİL", "Delete", new { id = item.ID }, new { @class = "btn btn-danger", @onclick = "return confirm ('SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="~/AdminIlginc/AnaSayfaAdd/" class="btn btn-info">YENİ ANA SAYFA EKLE</a>
+<br />
+<br />
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+
+
+
+
+

@@ -1,0 +1,59 @@
+﻿@model List<ChessProject.Models.Entitiy.Tbl_Comment>
+@{
+    ViewBag.Title = "YorumListe";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-left:520px"><h1><u>YORUM SAYFASI</u></h1></div>
+<br />
+<br />
+<table class="table table-hover" id="tbl1" border="1">
+    <thead>
+        <tr>
+            <th>İSİM</th>
+            <th>MAİL</th>
+            <th>YORUM İÇERİK</th>
+            <th>TARİH</th>
+            <th>ONAYLANDI MI</th>
+            <th>BLOG</th>
+            <th>GÜNCELLE</th>
+            <th>ONAYLA</th>
+            <th>ONAYLAMA</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>
+                @item.Mail
+            </td>
+            <td>@item.Comment</td>
+            <td>
+                @item.Date.Value.ToShortDateString()
+            </td>
+            <td>
+                @item.Tbl_Blog.BlogTitle
+            </td>
+            <td>
+                @(item.CommentOkay==true?"ONAYLI":"ONAYSIZ")
+            </td>
+            <td>@Html.ActionLink("YORUM GÜNCELLE", "UpdatePage", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+            <td>@Html.ActionLink("ONAYLA", "TrueComment", new { id = item.ID }, new { @class = "btn btn-info", @onclick = "return confirm ('YORUM ONAYLANACAKTIR EMİN MİSİNİZ ?')" })</td>
+            <td>@Html.ActionLink("ONAYLAMA", "FalseComment", new { id = item.ID }, new { @class = "btn btn-danger", @onclick = "return confirm ('YORUM ONAYLANMIYACAKTIR EMİN MİSİNİZ ?')" })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+
+
+

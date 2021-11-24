@@ -1,0 +1,50 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<ChessProject.Models.Entitiy.Tbl_Blog>
+@{
+    ViewBag.Title = "Sayfa";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<section class="main__middle__container">
+    <div class="container">
+        <div class="row nothing">
+            <section class="col-md-8 main-content">
+                <h2 class="page__title text-center"><span>SATRANÇ BLOG</span></h2>
+                <div class="seper"></div>
+                <table class="table table-hover">
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="col-md-9 text-left">
+                                        <article>
+                                            <img src="@item.BlogImage" alt="pic1" class="pull-left img-responsive">
+                                            <div class="text">
+                                                <h3><a href="~/Blog/Detay/@item.ID">@item.BlogTitle</a></h3>
+                                                <div class="seper lefter"></div>
+                                                <p>@item.BlogComment.Substring(0,item.BlogComment.Substring(0,60).LastIndexOf(" "))...</p>
+                                                BLOG YAYIN TARİHİ: <h4 style="color:teal">@item.BlogDate.ToShortDateString()</h4>
+                                                <h3><small><a href="~/Blog/Detay/@item.ID">Daha Fazla Oku >></a></small></h3>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </article>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Sayfa", new { sayfa }))
+            </section>
+            @Html.Action("BlogList", "Blog")
+        </div>
+    </div>
+</section>

@@ -1,0 +1,105 @@
+﻿@using ChessProject.Controllers
+@model Homelist
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<section class="slider">
+    <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img data-src="~/web/images/slider/bck3.jpg" alt="third slide" src="~/web/images/slider/bck3.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1> <span></span>  <span>"KAFANIZ KARIŞIKSA SATRANÇ OYNAYIN"</span> </h1>
+                        <h2 style="color:white">"Tevis"</h2>
+                        <p><a class="btn btn-default btn-lg" href="~/Anasayfa/Home" role="button">Hadi Başlayın..</a><a class="btn btn-default btn-lg" href="~/Blog/Sayfa/" role="button">Daha Fazla Oku..</a></p>
+                    </div>
+                </div>
+            </div>
+            @foreach (var item in Model.home)
+            {
+                <div class="item">
+                    <img data-src="@item.Image" alt="first slide" src="@item.Image">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1><span></span><span>@item.Comment</span></h1>
+                            <h2 style="color:white">@item.Title</h2>
+                            <h><a class="btn btn-default btn-lg" href="~/Anasayfa/Home/" role="button">Hadi Başlayın..</a><a class="btn btn-default btn-lg" href="~/Blog/Sayfa/" role="button">Daha Fazla Oku..</a></h>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon carousel-control-left"></span></a> <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon carousel-control-right"></span></a>
+    </div>
+</section>
+<!--end of slider section-->
+<section class="main__middle__container homepage">
+    <div class="row text-center headings no-margin nothing">
+        <div class="container">
+            <h1 class="page_title">SATRANÇIN BÜYÜLÜ DÜNYASINA SİZDE KATILMAK İSTER MİSİNİZ ?</h1>
+            <div class="seper"></div>
+            <p style="color:orange;font-size:large">Yaklaşık 600 000 000 insan dünya çapında satranç oynamayı biliyor.Sizde bizden biri olunuz...</p>
+            <p><a class="btn btn-primary btn-lg" href="~/Satranc/Nedir" role="button">Daha Fazla Oku..</a></p>
+        </div>
+    </div>
+    <div class="row three__blocks no_padding no-margin text-center">
+        <div class="container">
+            <img src="~/web/images/icons/blog.png" alt="icon__image" class="text-center">
+            <h2 class="page__title text-center"><span><a href="~/Blog/Sayfa/">BLOG YAZILARIMIZ</a></span></h2>
+            <div class="seper text-center"></div>
+            @foreach (var item in Model.blog)
+            {
+                <div class="col-md-4">
+                    <img src="@item.BlogImage" alt="image" class="img-responsive img-rounded">
+                    <a href="~/Blog/Detay/@item.ID"> <h3>@item.BlogTitle</h3></a>
+                    <div class="seper"></div>
+                    <p>@item.BlogComment.Substring(0, item.BlogComment.Substring(0, 60).LastIndexOf(" "))...</p>
+                    <p><a class="btn btn-info btn-md" href="~/Blog/Detay/@item.ID" role="button">Daha Fazla Oku..</a>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row text-center nothing line__bg testimonials">
+        <div class="container">
+            <img src="~/web/images/icons/testimonials.png" alt="testimonials">
+            <div id="myCarousel2" class="carousel slide carousel-fade" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel2" data-slide-to="1"></li>
+                    <li data-target="#myCarousel2" data-slide-to="2"></li>
+                    <li data-target="#myCarousel2" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <h1 style="color:orange">SON YORUMLAR</h1>
+                        <p class="small-paragraph">
+                            BLOGLARIMIZA YAZILAN SON YORUMLAR
+                        </p>
+                    </div>
+                    @foreach (var item in Model.comment)
+                    {
+                        <div class="item">
+                            <h1 style="color:orange">@item.Name</h1>
+                            <p class="small-paragraph">
+                                @item.Comment
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+@Html.Action("InfoInsterting","Anasayfa")
+</section>
+<script type="text/javascript" src="~/web/js/jquery.min.js"></script>
+<script src="~/web/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $('.carousel').carousel({
+        interval: 3500,
+        pause: 'none'
+    })
+</script>
+
+

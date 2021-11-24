@@ -1,0 +1,22 @@
+﻿@model List<ChessProject.Models.Entitiy.Tbl_InterestingInfo>
+<div class="row grey-info-block text-center">
+    <div class="container">
+        <img src="~/web/images/icons/about.png" alt="about">
+        <h2 class="page__title"><span>İlgİnç Bİlgİlerİmİz</span></h2>
+        <div class="seper"></div>
+        <p class="small-paragraph">Satranç Hakkında İlgİnç Bİlgİlerİmİze GÖz Atmak İster Mİsİnİz ?</p>
+        @{string deger = "image_460x190.jpg";}
+        @foreach (var item in Model)
+        {<div class="col-md-6">
+                <img src="~/web/images/content__images/@deger" alt="pic" class="img-rounded img-responsive" id="picture">
+                <h3>@item.Interesting</h3>
+                <p class="small-paragraph">@item.Information</p>
+                <div class="seper"></div>
+                <p>@item.Who</p>
+                <p><a class="btn btn-info" href="~/Ilgınc/Liste/" role="button">Daha Fazla Oku</a></p>
+                @{deger = "image_460x191.jpg";
+                }
+            </div>
+        }
+    </div>
+</div>

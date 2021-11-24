@@ -1,0 +1,32 @@
+﻿@model ChessProject.Models.Entitiy.Tbl_Blog
+@{
+    ViewBag.Title = "UpdatePage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-left:520px"><h1><u>BLOG GÜNCELLEME SAYFASI</u></h1></div>
+<br />
+<br />
+@using (Html.BeginForm("UpdateGo", "AdminPanel", FormMethod.Post))
+{
+    <div style="margin-left:10px">@Html.TextBoxFor(x => x.ID, new { style = "display: none;" })</div>
+    <label>BLOĞUN BAŞLIĞI:</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextBoxFor(x => x.BlogTitle, new { @class = "form form-control", @required = "", @placeholder = "Blog Başlık Yazınız..", @MaxLength = 100 })</div>
+    <br />
+    <label>BLOG AÇIKLAMASI EN ÜSTTE:</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextAreaFor(x => x.BlogComment, new { @class = "form form-control", @required = "", @placeholder = "Blog Açıklaması Yazınız..", @style = "height:100px", @minLength = "101" })</div>
+    <br />
+    <label>BLOG YAYIN TARİHİ:</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextBoxFor(x => x.BlogDate, new { @class = "form form-control", @required = "", @Type = "date" })</div>
+    <br />
+    <label>BLOG RESİM EN BAŞTA GÖZÜKECEK (1920x1080px):</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextBoxFor(x => x.BlogImage, new { @class = "form form-control", @required = "", @placeholder = "Blog Resim Link Yapıştırınız..", @MaxLength = 200 })</div>
+    @Html.Action("BlogDetayUpdate", "AdminPanel")
+    <button class="btn btn-info" type="submit">BLOG GÜNCELLE</button>
+    <br />
+    <br />
+}
+

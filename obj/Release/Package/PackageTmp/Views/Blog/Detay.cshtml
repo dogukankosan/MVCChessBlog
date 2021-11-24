@@ -1,0 +1,46 @@
+﻿@model List<ChessProject.Models.Entitiy.TblDetay>
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<body>
+    <section class="main__middle__container">
+        <div class="container">
+            <div class="row nothing">
+                <section class="col-md-8 main-content">
+                    <br />
+                    <br />
+                    <br />   <br />
+                    <br />
+                    <br />
+                    @foreach (var item in Model)
+                    {
+                        <img src="@item.BlogImage1" alt="image" class="img-responsive"> <br />
+                        <hr>
+                        <p>@item.Tbl_Blog.BlogComment</p>
+                        <br />
+                        <hr>
+                        <img src="@item.BlogImage2" alt="image" class="img-responsive"> <br />
+                        <hr>
+                        <blockquote>
+                            <p>@item.BlogComment1</p>
+                            <p>@item.BlogSoz</p>
+                            <small>SATRANÇ BÜYÜK USTASI <cite title="Source Title">@item.Tbl_Blog.BlogTitle</cite></small>
+                        </blockquote>
+                        <hr>
+                        <b><p>@item.BlogComment2</p></b>
+                    }
+                    <br />
+                </section>
+                <br />
+                <br />
+                <br />
+                <br />
+                @Html.Action("BlogList", "Blog")
+            </div>
+            @Html.Action("CommentAdd", "Blog")
+        </div>
+    </section>
+@Html.Action("CommentList", "Blog")
+</body>
+

@@ -1,0 +1,25 @@
+﻿@model ChessProject.Models.Entitiy.Tbl_Comment
+@{
+    ViewBag.Title = "UpdatePage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-left:520px"><h1><u>YORUM GÜNCELLEME SAYFASI</u></h1></div>
+<br />
+<br />
+@using (Html.BeginForm("UpdateGo", "AdminYorum", FormMethod.Post))
+{<div style="margin-left:10px">@Html.TextBoxFor(x => x.ID, new { style = "display: none;" })</div>
+<label>YORUM YAZAN</label>
+<br />
+<div style="margin-left:10px">@Html.TextBoxFor(x => x.Name, new { @class = "form form-control", @required = "", @MaxLength = 50 })</div>
+<br />
+<label>MAİL ADRESİ</label>
+<br />
+<div style="margin-left:10px">@Html.TextBoxFor(x => x.Mail, new { @class = "form form-control", @required = "", @type = "email", @MaxLength = 70 })</div>
+<br />
+<label>YORUM AÇIKLAMASI</label>
+<br />
+<div style="margin-left:10px">@Html.TextAreaFor(x => x.Comment, new { @class = "form form-control", @required = "", @style = "height:100px" })</div>
+<br />
+<button class="btn btn-info" type="submit">YORUM GÜNCELLE</button>
+}
+

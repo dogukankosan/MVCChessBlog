@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChessModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Blog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlogTitle" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="BlogComment" Type="varchar(max)" Nullable="false" />
+    <Property Name="BlogImage" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="BlogDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Comment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mail" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Comment" Type="varchar(max)" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="CommentOkay" Type="bit" />
+    <Property Name="BlogID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Mail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Comment" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Home">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Comment" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_InterestingInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Interesting" Type="varchar" MaxLength="700" Nullable="false" />
+    <Property Name="Information" Type="varchar" MaxLength="700" Nullable="false" />
+    <Property Name="Who" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblDetay">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlogID" Type="smallint" />
+    <Property Name="BlogImage1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="BlogImage2" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="BlogComment1" Type="varchar(max)" Nullable="false" />
+    <Property Name="BlogComment2" Type="varchar(max)" Nullable="false" />
+    <Property Name="BlogSoz" Type="varchar" MaxLength="400" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Tbl_Comment_Tbl_Blog">
+    <End Role="Tbl_Blog" Type="Self.Tbl_Blog" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tbl_Comment" Type="Self.Tbl_Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Blog">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tbl_Comment">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblDetay_Tbl_Blog">
+    <End Role="Tbl_Blog" Type="Self.Tbl_Blog" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TblDetay" Type="Self.TblDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Blog">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblDetay">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ChessModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Blog" EntityType="Self.Tbl_Blog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Comment" EntityType="Self.Tbl_Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Contact" EntityType="Self.Tbl_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Home" EntityType="Self.Tbl_Home" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_InterestingInfo" EntityType="Self.Tbl_InterestingInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblDetay" EntityType="Self.TblDetay" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Tbl_Comment_Tbl_Blog" Association="Self.FK_Tbl_Comment_Tbl_Blog">
+      <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+      <End Role="Tbl_Comment" EntitySet="Tbl_Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblDetay_Tbl_Blog" Association="Self.FK_TblDetay_Tbl_Blog">
+      <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+      <End Role="TblDetay" EntitySet="TblDetay" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

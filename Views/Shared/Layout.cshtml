@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>KRALLARIN OYUNU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/web/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Kreon:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+    <link href="~/web/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="main__header">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header"> <a href="#" onClick="javascript.void()" class="submenu">Menus</a> </div>
+                <div class="menuBar">
+                    <ul class="menu">
+                        <li class="active"><a href="~/Anasayfa/Home/">ANA SAYFA</a></li>
+                        <li class="dropdown">
+                            <a href="#">BİLGİLER</a>
+                            <ul>
+                                <li><a href="~/Satranc/Nedir">SATRANÇ NEDİR ?</a></li>
+                                <li><a href="~/Blog/Sayfa">BLOG</a></li>
+                                <li><a href="~/Ilgınc/Liste/">İLGİNÇ BİLGİLER</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="~/Iletisim/iletisim/">İLETİŞİM</a></li>
+                        <li><a href="~/Login/GirisYap">GİRİŞ YAP</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="navbar-header with__logo">
+                <h1 class="navbar-brand"><a href="~/Anasayfa/Home/">SATRANÇ</a></h1>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Hakkımızda</h3>
+                    <div class="seper lefter"></div>
+                    <p>
+                        Satrançı bir yaşam tarzı yapmış ,bunun bir oyundan daha çok hayatın kendisi olduğunu biliyoruz. <br />
+                        <br />
+                        Bu web sitemizde size satrancın güzellikleri bu derya denize beraber girip burada beraber düşünmeyi istiyoruz SATRANÇLA KALIN :)
+                    </p>
+                </div>
+                @Html.Action("Layoutwett", "Anasayfa")
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-3">
+                    <h3>İletişim Bilgileri</h3>
+                    <div class="seper lefter"></div>
+                    <p>
+                        SILIVRI/ISTANBUL<br />
+                        TÜRKİYE<br />
+                        <br />
+                        Telefon: +90 (544) 289-5650<br />
+                        <br />
+                    </p>
+                    <div class="social__icons"><a href="mailto:ghasab101@gmail.com" class="socialicon socialicon-google"></a></div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <p class="text-center copyright">&copy; Copyright TÜM HAKLARI SAKLIDIR 2021 | DESIGN BY DOĞUKAN KOŞAN</p>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    $('.carousel').carousel({
+        interval: 3500, // in milliseconds
+        pause: 'none' // set to 'true' to pause slider on mouse hover
+    })
+
+</script>
+<script type="text/javascript">
+    $("a.submenu").click(function () {
+        $(".menuBar").slideToggle("normal", function () {
+            // Animation complete.
+        });
+    });
+    $("ul li.dropdown a").click(function () {
+        $("ul li.dropdown ul").slideToggle("normal", function () {
+            // Animation complete.
+        });
+        $('ul li.dropdown').toggleClass('current');
+    });
+</script>

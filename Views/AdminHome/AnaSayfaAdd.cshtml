@@ -1,0 +1,21 @@
+﻿@model ChessProject.Models.Entitiy.Tbl_Home
+@{
+    ViewBag.Title = "AnaSayfaAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-left:520px"><h1><u>ANA SAYFA EKLEME SAYFASI</u></h1></div>
+<br />
+@using (Html.BeginForm("Add", "AdminHome", FormMethod.Post))
+{<label>ANASAYFA BAŞLIK:</label>
+    <div style="margin-left:10px">@Html.TextBoxFor(x => x.Title, new { @class = "form form-control", @required = "", @placeholder = "AnaSayfa Başlık Yazınız..", @MaxLength = 200 })</div>
+    <br />
+    <label>ANASAYFA AÇIKLAMASI:</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextAreaFor(x => x.Comment, new { @class = "form form-control", @required = "", @placeholder = "Ana Sayfa Açıklaması Yazınız..", @style = "height:100px", MaxLength = 500 })</div>
+    <br />
+    <label>BLOG RESİM EN BAŞTA GÖZÜKECEK (1920x1080px):</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextBoxFor(x => x.Image, new { @class = "form form-control", @required = "", @placeholder = "Resim Linki Yapıştırınız..", MaxLength = 100 })</div>
+    <br />
+    <button class="btn btn-info" type="submit">EKLE</button>
+}

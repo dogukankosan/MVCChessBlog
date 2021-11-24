@@ -1,0 +1,39 @@
+﻿@model List<ChessProject.Models.Entitiy.Tbl_InterestingInfo>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<body>
+    <br /><br /><br />
+    <section class="main__middle__container">
+        <div class="container">
+            <div class="row nothing">
+                <section class="col-md-8 main-content">
+                    <br />
+                    <h2>HİÇ DUYMADINIZ BİLGİLER !!</h2>
+                    <br />
+                    @foreach (var item in Model)
+                    {<ul>
+                            <li>
+                                <p>
+                                    <strong>
+                                        @item.Interesting
+                                    </strong>
+                                </p>
+                            </li>
+                        </ul>
+                        <blockquote>
+                            <p>@item.Information</p>
+                            <small><cite title="Source Title"></cite>@item.Who</small>
+                        </blockquote>
+                    }
+                </section>
+                @Html.Action("BlogList", "Blog")
+            </div>
+        </div>
+    </section>
+</body>
+

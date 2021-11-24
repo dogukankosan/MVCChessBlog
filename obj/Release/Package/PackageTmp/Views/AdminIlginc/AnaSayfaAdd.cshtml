@@ -1,0 +1,22 @@
+﻿@model ChessProject.Models.Entitiy.Tbl_InterestingInfo
+@{
+    ViewBag.Title = "AnaSayfaAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-left:520px"><h1><u>İLGİNÇ BİLGİLER EKLEME SAYFASI</u></h1></div>
+<br />
+@using (Html.BeginForm("Add", "AdminIlginc", FormMethod.Post))
+{<label>İLGİNÇ BİLGİ:</label>
+    <div style="margin-left:10px">@Html.TextBoxFor(x =>x.Interesting, new { @class = "form form-control", @required = "", @placeholder = "İlginç Bilgi Yazınız..", @MaxLength = 700 })</div>
+    <br />
+    <label>BİLGİ GÜZEL BİR SÖZ:</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextAreaFor(x =>x.Information, new { @class = "form form-control", @required = "", @placeholder = "Güzel Bir Söz Yazınız..", @style = "height:100px", MaxLength = 700 })</div>
+    <br />
+    <label>KİM YAZDI BUNU:</label>
+    <br />
+    <div style="margin-left:10px">@Html.TextBoxFor(x =>x.Who, new { @class = "form form-control", @required = "", @placeholder = "Yazar İsmi Yazınız..", MaxLength = 100 })</div>
+    <br />
+    <button class="btn btn-info" type="submit">EKLE</button>
+}
+

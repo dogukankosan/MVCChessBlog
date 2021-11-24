@@ -1,0 +1,49 @@
+﻿<div style="margin-left:520px"><h1><u>BLOG SAYFASI</u></h1></div>
+@model List<ChessProject.Models.Entitiy.Tbl_Blog>
+@{
+    ViewBag.Title = "AdminAna";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<br />
+<table class="table table-hover" id="tbl1" border="1">
+    <thead>
+        <tr>
+            <th>BAŞLIK</th>
+            <th>TARİH</th>
+            <th>İÇERİK</th>
+            <th>RESİM</th>
+            <th>GÜNCELLE</th>
+            <th>SİL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BlogTitle</td>
+                <td>
+                    @item.BlogDate.ToShortDateString()
+                </td>
+                <td>@item.BlogComment.Substring(0,item.BlogComment.Substring(0,60).LastIndexOf(" "))...</td>
+                <td>
+                    <img src=" @item.BlogImage" width="70" height="70" alt="Blog Resim" />
+                </td>
+                <td>@Html.ActionLink("GÜNCELLE", "UpdatePage", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("SİL", "Delete", new { id = item.ID }, new { @class = "btn btn-danger", @onclick = "return confirm ('SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="~/AdminPanel/Add/" class="btn btn-info">YENİ BLOG EKLE SAYFASI</a>
+<br /><br />
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+

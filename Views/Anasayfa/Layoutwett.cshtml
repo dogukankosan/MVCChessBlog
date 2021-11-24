@@ -1,0 +1,13 @@
+﻿@model List<ChessProject.Models.Entitiy.TblDetay>
+<div class="col-md-3">
+    <h3>Tweetler</h3>
+    <div class="seper lefter"></div>
+    @foreach (var item in Model)
+    {
+        <p>
+            <span>Tweet</span>
+            @item.BlogSoz
+        </p>
+    }
+</div>
+

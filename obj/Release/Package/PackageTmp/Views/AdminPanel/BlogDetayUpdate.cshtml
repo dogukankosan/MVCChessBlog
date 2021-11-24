@@ -1,0 +1,24 @@
+﻿
+@model ChessProject.Models.Entitiy.TblDetay
+<br />
+<label>BLOG AÇIKLAMASI ORTA KISIM:</label>
+<br />
+<div style="margin-left:10px">@Html.TextAreaFor(x => x.BlogComment1, new { @class = "form form-control", @required = "", @placeholder = "Blog Açıklaması Yazınız..", @style = "height:100px", @minLength = "101" })</div>
+<br />
+<label>BLOG AÇIKLAMA EN ALTTA:</label>
+<br />
+<div style="margin-left:10px">@Html.TextAreaFor(x => x.BlogComment2, new { @class = "form form-control", @required = "", @placeholder = "Blog Açıklaması Yazınız..", @style = "height:100px", @minLength = "101" })</div>
+<br />
+<label>BLOG RESİM ORTA KISIMDA(1920x1080px)</label>
+<br />
+<div style="margin-left:10px">@Html.TextBoxFor(x => x.BlogImage1, new { @class = "form form-control", @required = "", @placeholder = "Blog Resim Link Yapıştırınız.." })</div>
+<br />
+<label>BLOG RESİM EN ALTTA(1920x1080px)</label>
+<br />
+<div style="margin-left:10px">@Html.TextBoxFor(x => x.BlogImage2, new { @class = "form form-control", @required = "", @placeholder = "Blog Resim Link Yapıştırınız.." })</div>
+<br />
+<label>BLOG SÖZ KISMI:</label>
+<br />
+<div style="margin-left:10px">@Html.TextBoxFor(x => x.BlogSoz, new { @class = "form form-control", @required = "", @placeholder = "Blog Söz Yazınız..", @MaxLength = 400 })</div>
+<br />
+

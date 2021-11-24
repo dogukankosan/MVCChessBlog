@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tbl_Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Tbl_Home">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ChessEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_Contact" EntityType="Self.Tbl_Contact" />
+    <EntitySet Name="Tbl_Home" EntityType="Self.Tbl_Home" />
+    <EntitySet Name="sysdiagrams" EntityType="ChessModel.sysdiagrams" />
+    <EntitySet Name="Tbl_Blog" EntityType="ChessModel.Tbl_Blog" />
+    <EntitySet Name="Tbl_Comment" EntityType="ChessModel.Tbl_Comment" />
+    <AssociationSet Name="FK_Tbl_Comment_Tbl_Blog" Association="ChessModel.FK_Tbl_Comment_Tbl_Blog">
+      <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+      <End Role="Tbl_Comment" EntitySet="Tbl_Comment" />
+    </AssociationSet>
+    <EntitySet Name="TblDetay" EntityType="ChessModel.TblDetay" />
+    <AssociationSet Name="FK_TblDetay_Tbl_Blog" Association="ChessModel.FK_TblDetay_Tbl_Blog">
+      <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+      <End Role="TblDetay" EntitySet="TblDetay" />
+    </AssociationSet>
+    <EntitySet Name="Tbl_Admin" EntityType="ChessModel.Tbl_Admin" />
+    <EntitySet Name="Tbl_InterestingInfo" EntityType="ChessModel.Tbl_InterestingInfo" />
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Blog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BlogTitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BlogComment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BlogImage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tbl_Comment" Relationship="ChessModel.FK_Tbl_Comment_Tbl_Blog" FromRole="Tbl_Blog" ToRole="Tbl_Comment" />
+    <Property Name="BlogDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="TblDetay" Relationship="ChessModel.FK_TblDetay_Tbl_Blog" FromRole="Tbl_Blog" ToRole="TblDetay" />
+  </EntityType>
+  <EntityType Name="Tbl_Comment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BlogID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Tbl_Blog" Relationship="ChessModel.FK_Tbl_Comment_Tbl_Blog" FromRole="Tbl_Comment" ToRole="Tbl_Blog" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="CommentOkay" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_Tbl_Comment_Tbl_Blog">
+    <End Type="ChessModel.Tbl_Blog" Role="Tbl_Blog" Multiplicity="1" />
+    <End Type="ChessModel.Tbl_Comment" Role="Tbl_Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Blog">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tbl_Comment">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblDetay">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BlogID" Type="Int16" />
+    <Property Name="BlogImage1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BlogImage2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BlogComment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BlogComment2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BlogSoz" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tbl_Blog" Relationship="ChessModel.FK_TblDetay_Tbl_Blog" FromRole="TblDetay" ToRole="Tbl_Blog" />
+  </EntityType>
+  <Association Name="FK_TblDetay_Tbl_Blog">
+    <End Type="ChessModel.Tbl_Blog" Role="Tbl_Blog" Multiplicity="0..1" />
+    <End Type="ChessModel.TblDetay" Role="TblDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Blog">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblDetay">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tbl_InterestingInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Interesting" Type="String" Nullable="false" MaxLength="700" FixedLength="false" Unicode="false" />
+    <Property Name="Information" Type="String" Nullable="false" MaxLength="700" FixedLength="false" Unicode="false" />
+    <Property Name="Who" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

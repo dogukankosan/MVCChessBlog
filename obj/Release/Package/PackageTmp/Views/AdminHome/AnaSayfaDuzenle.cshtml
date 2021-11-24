@@ -1,0 +1,50 @@
+﻿@model List<ChessProject.Models.Entitiy.Tbl_Home>
+@{
+    ViewBag.Title = "AnaSayfaDuzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-left:420px"><h1><u>ANA SAYFADA GÖZÜKECEK ALAN SAYFASI</u></h1></div>
+<br />
+<br />
+<br />
+<table class="table table-hover" id="tbl1" border="1">
+    <thead>
+        <tr>
+            <th>RESİM</th>
+            <th>BAŞLIK</th>
+            <th>İÇERİK</th>
+            <th>GÜNCELLE</th>
+            <th>SİL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src=" @item.Image" width="70" height="70" alt="Blog Resim" /></td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Comment
+                </td>
+                <td>@Html.ActionLink("GÜNCELLE", "UpdatePage", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("SİL", "Delete", new { id = item.ID }, new { @class = "btn btn-danger", @onclick = "return confirm ('SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="~/AdminHome/AnaSayfaAdd/" class="btn btn-info">YENİ ANA SAYFA EKLE</a>
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+
+
+
+

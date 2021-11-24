@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f439fef8a134cf58e15050dbe08860f" Name="Diagram1">
+        <EntityTypeShape EntityType="ChessModel.Tbl_Contact" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChessModel.Tbl_Home" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChessModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ChessModel.Tbl_Blog" Width="1.5" PointX="2.125" PointY="6.5" />
+        <EntityTypeShape EntityType="ChessModel.Tbl_Comment" Width="1.5" PointX="5.625" PointY="3.875" />
+        <AssociationConnector Association="ChessModel.FK_Tbl_Comment_Tbl_Blog" />
+        <EntityTypeShape EntityType="ChessModel.TblDetay" Width="1.5" PointX="5.625" PointY="7.25" />
+        <AssociationConnector Association="ChessModel.FK_TblDetay_Tbl_Blog" />
+        <EntityTypeShape EntityType="ChessModel.Tbl_Admin" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ChessModel.Tbl_InterestingInfo" Width="1.5" PointX="7.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,58 @@
+﻿@model ChessProject.Models.Entitiy.Tbl_Contact
+@{
+    ViewBag.Title = "iletisim";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<section class="main__middle__container">
+    <div class="row title__block">
+        <div class="container text-center">
+            <h2 class="page__title">İLETİŞİM</h2>
+            <span class="sep"></span>
+        </div>
+    </div>
+    <section class="contact-us">
+        <div class="container">
+            <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192503.6008853881!2d28.060715357089514!3d41.07186122535695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b53fdbc4bfe901%3A0x6f637ffe39da55b6!2sSilivri%2C%20%C4%B0stanbul!5e0!3m2!1str!2str!4v1637145799724!5m2!1str!2str"></iframe>
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>MESAJ ATINIZ</h3>
+                    <hr>
+                    <p>Fikir Ve Önerileriniz İçin Bize Ulaşınız..</p>
+                    <br />
+                    @using (@Html.BeginForm("Gonder", "Iletisim", FormMethod.Post))
+                    {
+                        <div class="form-group col-md-6">
+                            <label class="sr-only" for="exampleInputEmail1">İSMİNİZİ GİRİNİZ: *</label>
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "İsminiz..", @required = "", MaxLength = 70 })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="sr-only" for="exampleInputEmail1">Email: *</label>
+                            @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", @placeholder = "Mail Adresiniz..",@Type= "email", @required = "", MaxLength = 100 })
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            @Html.TextAreaFor(x => x.Comment, new { @class = "form-control", @placeholder = "Mesaj..",@style="height:100px", @required = "", MaxLength = 200 })
+                        </div>
+                       
+                       <input id="submit-button" type="submit" class="btn btn-lg btn-info" onclick="return confirm('MESAJ GÖNDERMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ?')" value="Gönder">
+                    }
+                </div>
+                <div class="col-md-4">
+                    <h3>İLETİŞİM BİLGİLERİ</h3>
+                    <hr>
+                    <p class="black-text"><span class="orange">Adres: </span> SİLİVRİ/İSTANBUL,TÜRKİYE</p>
+                    <p class="black-text"><span class="orange">Mail: </span> ghasab101@gmail.com</p>
+                    <p class="black-text"><span class="orange">Telefon: </span> +90 (544)289 5650</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+

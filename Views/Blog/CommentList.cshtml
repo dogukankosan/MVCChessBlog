@@ -1,0 +1,18 @@
+﻿@model List<ChessProject.Models.Entitiy.Tbl_Comment>
+@foreach (var item in Model)
+{
+    <ul class="comments">
+        <hr />
+        <img src="~/web/images/icons/icons8_user.ico" width="20" height="20" style="margin-left:10px" class="img-responsive" alt="">
+        <h5 class="post-author_head">YORUM YAZAN  <a href="#" title="Postb" rel="author">@item.Name</a></h5>
+        <div class="desc">
+            <blockquote>
+                <h5>@item.Date.Value.ToShortDateString()</h5>
+                <p>@item.Comment</p>
+            </blockquote>
+        </div>
+        <div class="clearfix"></div>
+        <hr />
+    </ul>
+}
+

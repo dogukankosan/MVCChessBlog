@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADMİN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="~/web2/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/web2/css/style.css" rel="stylesheet" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+</head>
+<body>
+    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Kapat &times;</button>
+        <a href="~/AdminHome/AnaSayfaDuzenle/" class="w3-bar-item w3-button">Ana Sayfa</a>
+        <a href="~/AdminPanel/AdminAna/" class="w3-bar-item w3-button">Bloglar</a>
+        <a href="~/AdminYorum/YorumListe/" class="w3-bar-item w3-button">Yorumlar</a>
+        <a href="~/AdminIlginc/Listele/" class="w3-bar-item w3-button">İlginç Bilgiler</a>
+        <a href="~/AdminIletisim/IletisimList/" class="w3-bar-item w3-button">İletişim</a>
+        <a href="~/Anasayfa/Home/" class="w3-bar-item w3-button">Siteye Git</a>
+        <a href="~/Login/Logout/" class="w3-bar-item w3-button">Çıkış Yap</a>
+    </div>
+    <div class="w3-orange">
+        <button class="w3-button w3-orange w3-xlarge" onclick="w3_open()">☰</button>
+        <div class="w3-container">
+            <h1>ADMİN PANELİ</h1>
+        </div>
+    </div>
+    <div class="w3-container">
+        @RenderBody()
+    </div>
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

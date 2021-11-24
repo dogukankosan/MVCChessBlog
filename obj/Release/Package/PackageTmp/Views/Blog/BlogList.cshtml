@@ -1,0 +1,23 @@
+﻿@using ChessProject.Controllers;
+@model BlogList
+    <br />
+<aside class="col-md-4">
+    <h3><span>EN SEVİLEN BLOG</span></h3>
+    <hr />
+    @foreach (var item in Model.ust)
+    {
+<b> <p>@item.BlogTitle</p></b>
+        <img src="@item.BlogImage" alt="image">
+        <p>@item.BlogComment.Substring(0,item.BlogComment.Substring(0,150).LastIndexOf(" "))...</p>
+        <p><a href="~/Blog/Detay/@item.ID" role="button" class="btn btn-info btn-lg">DAHA FAZLA OKU</a></p>
+    }
+
+    <h3><span>SON 5 BLOG</span></h3>
+    <hr />
+    @foreach (var item in Model.alt)
+    {
+        <ul>
+            <li><a href="~/Blog/Detay/@item.ID">@item.BlogTitle</a></li>
+        </ul>
+    }
+</aside>

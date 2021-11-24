@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChessModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tbl_Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogTitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BlogComment" Type="varchar(max)" Nullable="false" />
+          <Property Name="BlogImage" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="BlogDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Comment" Type="varchar(max)" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="CommentOkay" Type="bit" />
+          <Property Name="BlogID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Home">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_InterestingInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Interesting" Type="varchar" MaxLength="700" Nullable="false" />
+          <Property Name="Information" Type="varchar" MaxLength="700" Nullable="false" />
+          <Property Name="Who" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblDetay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="smallint" />
+          <Property Name="BlogImage1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BlogImage2" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BlogComment1" Type="varchar(max)" Nullable="false" />
+          <Property Name="BlogComment2" Type="varchar(max)" Nullable="false" />
+          <Property Name="BlogSoz" Type="varchar" MaxLength="400" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_Comment_Tbl_Blog">
+          <End Role="Tbl_Blog" Type="Self.Tbl_Blog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_Comment" Type="Self.Tbl_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Comment">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblDetay_Tbl_Blog">
+          <End Role="Tbl_Blog" Type="Self.Tbl_Blog" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblDetay" Type="Self.TblDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblDetay">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChessModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Blog" EntityType="Self.Tbl_Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Comment" EntityType="Self.Tbl_Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Contact" EntityType="Self.Tbl_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Home" EntityType="Self.Tbl_Home" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_InterestingInfo" EntityType="Self.Tbl_InterestingInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblDetay" EntityType="Self.TblDetay" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_Comment_Tbl_Blog" Association="Self.FK_Tbl_Comment_Tbl_Blog">
+            <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+            <End Role="Tbl_Comment" EntitySet="Tbl_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblDetay_Tbl_Blog" Association="Self.FK_TblDetay_Tbl_Blog">
+            <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+            <End Role="TblDetay" EntitySet="TblDetay" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Tbl_Home">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ChessEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Contact" EntityType="Self.Tbl_Contact" />
+          <EntitySet Name="Tbl_Home" EntityType="Self.Tbl_Home" />
+          <EntitySet Name="sysdiagrams" EntityType="ChessModel.sysdiagrams" />
+          <EntitySet Name="Tbl_Blog" EntityType="ChessModel.Tbl_Blog" />
+          <EntitySet Name="Tbl_Comment" EntityType="ChessModel.Tbl_Comment" />
+          <AssociationSet Name="FK_Tbl_Comment_Tbl_Blog" Association="ChessModel.FK_Tbl_Comment_Tbl_Blog">
+            <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+            <End Role="Tbl_Comment" EntitySet="Tbl_Comment" />
+          </AssociationSet>
+          <EntitySet Name="TblDetay" EntityType="ChessModel.TblDetay" />
+          <AssociationSet Name="FK_TblDetay_Tbl_Blog" Association="ChessModel.FK_TblDetay_Tbl_Blog">
+            <End Role="Tbl_Blog" EntitySet="Tbl_Blog" />
+            <End Role="TblDetay" EntitySet="TblDetay" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Admin" EntityType="ChessModel.Tbl_Admin" />
+          <EntitySet Name="Tbl_InterestingInfo" EntityType="ChessModel.Tbl_InterestingInfo" />
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogTitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BlogComment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BlogImage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Comment" Relationship="ChessModel.FK_Tbl_Comment_Tbl_Blog" FromRole="Tbl_Blog" ToRole="Tbl_Comment" />
+          <Property Name="BlogDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="TblDetay" Relationship="ChessModel.FK_TblDetay_Tbl_Blog" FromRole="Tbl_Blog" ToRole="TblDetay" />
+        </EntityType>
+        <EntityType Name="Tbl_Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BlogID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Tbl_Blog" Relationship="ChessModel.FK_Tbl_Comment_Tbl_Blog" FromRole="Tbl_Comment" ToRole="Tbl_Blog" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="CommentOkay" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Tbl_Comment_Tbl_Blog">
+          <End Type="ChessModel.Tbl_Blog" Role="Tbl_Blog" Multiplicity="1" />
+          <End Type="ChessModel.Tbl_Comment" Role="Tbl_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Comment">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblDetay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Int16" />
+          <Property Name="BlogImage1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BlogImage2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BlogComment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BlogComment2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BlogSoz" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tbl_Blog" Relationship="ChessModel.FK_TblDetay_Tbl_Blog" FromRole="TblDetay" ToRole="Tbl_Blog" />
+        </EntityType>
+        <Association Name="FK_TblDetay_Tbl_Blog">
+          <End Type="ChessModel.Tbl_Blog" Role="Tbl_Blog" Multiplicity="0..1" />
+          <End Type="ChessModel.TblDetay" Role="TblDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblDetay">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_InterestingInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Interesting" Type="String" Nullable="false" MaxLength="700" FixedLength="false" Unicode="false" />
+          <Property Name="Information" Type="String" Nullable="false" MaxLength="700" FixedLength="false" Unicode="false" />
+          <Property Name="Who" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChessModelStoreContainer" CdmEntityContainer="ChessEntities">
+          <EntitySetMapping Name="Tbl_Contact">
+            <EntityTypeMapping TypeName="ChessModel.Tbl_Contact">
+              <MappingFragment StoreEntitySet="Tbl_Contact">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Home">
+            <EntityTypeMapping TypeName="ChessModel.Tbl_Home">
+              <MappingFragment StoreEntitySet="Tbl_Home">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ChessModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Blog">
+            <EntityTypeMapping TypeName="ChessModel.Tbl_Blog">
+              <MappingFragment StoreEntitySet="Tbl_Blog">
+                <ScalarProperty Name="BlogDate" ColumnName="BlogDate" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogComment" ColumnName="BlogComment" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Comment">
+            <EntityTypeMapping TypeName="ChessModel.Tbl_Comment">
+              <MappingFragment StoreEntitySet="Tbl_Comment">
+                <ScalarProperty Name="CommentOkay" ColumnName="CommentOkay" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblDetay">
+            <EntityTypeMapping TypeName="ChessModel.TblDetay">
+              <MappingFragment StoreEntitySet="TblDetay">
+                <ScalarProperty Name="BlogSoz" ColumnName="BlogSoz" />
+                <ScalarProperty Name="BlogComment2" ColumnName="BlogComment2" />
+                <ScalarProperty Name="BlogComment1" ColumnName="BlogComment1" />
+                <ScalarProperty Name="BlogImage2" ColumnName="BlogImage2" />
+                <ScalarProperty Name="BlogImage1" ColumnName="BlogImage1" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Admin">
+            <EntityTypeMapping TypeName="ChessModel.Tbl_Admin">
+              <MappingFragment StoreEntitySet="Tbl_Admin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_InterestingInfo">
+            <EntityTypeMapping TypeName="ChessModel.Tbl_InterestingInfo">
+              <MappingFragment StoreEntitySet="Tbl_InterestingInfo">
+                <ScalarProperty Name="Who" ColumnName="Who" />
+                <ScalarProperty Name="Information" ColumnName="Information" />
+                <ScalarProperty Name="Interesting" ColumnName="Interesting" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
