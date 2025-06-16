@@ -79,7 +79,6 @@ MVCChessBlog/
 
 ---
 
-
 ## 🤝 Katkı
 
 Katkı sağlamak için projeyi forklayabilir ve pull request gönderebilirsiniz.
@@ -95,6 +94,8 @@ MIT License
 - 🐞 Suggestions or issues: [Issues sekmesi](https://github.com/dogukankosan/LogoWhatsappEntegrasyon/issues)
 
 ---
+
+
 
 <p align="center">
   <img src="https://img.shields.io/badge/ASP.NET-MVC-blue?logo=dotnet" alt="ASP.NET MVC" />
