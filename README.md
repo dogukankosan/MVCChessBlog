@@ -77,11 +77,15 @@ MVCChessBlog/
 4. Projeyi derle ve çalıştır.
 5. Satranç blogunu kullanmaya başla!
 
+
 ---
 
 ## 🤝 Katkı
 
 Katkı sağlamak için projeyi forklayabilir ve pull request gönderebilirsiniz.
+
+---
+
 ## 📄 Lisans
 
 MIT License
