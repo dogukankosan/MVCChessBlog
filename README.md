@@ -79,15 +79,21 @@ MVCChessBlog/
 
 ---
 
-## Katkı Sağlama
+---
 
-Katkıda bulunmak için repoyu forklayabilir ve pull request gönderebilirsin.
+## 🤝 Katkı
+
+Katkı sağlamak için projeyi forklayabilir ve pull request gönderebilirsiniz.
+## 📄 Lisans
+
+MIT License
 
 ---
 
-## Lisans
+## 📬 İletişim
 
-MIT Lisansı ile sunulmuştur.
+- 👨‍💻 Geliştirici: [@dogukankosan](https://github.com/dogukankosan)  
+- 🐞 Suggestions or issues: [Issues sekmesi](https://github.com/dogukankosan/LogoWhatsappEntegrasyon/issues)
 
 ---
 
