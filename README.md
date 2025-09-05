@@ -65,7 +65,6 @@ MVCChessBlog/
 ├── web/           # Web ile ilgili yardımcı dizin
 ├── weblogin/      # Giriş modülü
 ```
-> Not: Bu liste API kısıtı nedeniyle ilk 10+ dosya/klasör ile sınırlıdır. [Tüm dosya ve klasörleri görmek için tıklayın.](https://github.com/dogukankosan/MVCChessBlog/tree/main)
 
 ---
 
